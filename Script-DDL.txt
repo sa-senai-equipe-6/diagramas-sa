@@ -1,0 +1,32 @@
+CREATE TABLE public.usuario (
+	id serial4 NOT NULL,
+	login varchar(20) NULL,
+	nome_completo varchar(50) NULL,
+	perfil int4 NOT NULL,
+	senha varchar(10) NULL,
+	CONSTRAINT uk_pm3f4m4fqv89oeeeac4tbe2f4 UNIQUE (login),
+	CONSTRAINT usuario_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE public.motorista (
+	id serial4 NOT NULL,
+	categoria bpchar(1) NOT NULL,
+	cnh varchar(255) NULL,
+	data_renovacao date NOT NULL,
+	id_usuario int4 NOT NULL,
+	CONSTRAINT motorista_pkey PRIMARY KEY (id),
+	CONSTRAINT uk_gphuu69li5ex4aofww1cmtv9n UNIQUE (cnh)
+);
+
+ALTER TABLE public.motorista ADD CONSTRAINT fkrong3lpef8mibc243bx6fih6s FOREIGN KEY (id_usuario) REFERENCES public.usuario(id);
+
+CREATE TABLE public.meio_transporte (
+	id serial4 NOT NULL,
+	data_revisao date NOT NULL,
+	descricao varchar(1500) NULL,
+	tipo_veiculo int4 NOT NULL,
+	id_motorista int4 NOT NULL,
+	CONSTRAINT meio_transporte_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE public.meio_transporte ADD CONSTRAINT fknqt1iec958qgbtsok5uxfp6s1 FOREIGN KEY (id_motorista) REFERENCES public.motorista(id);
