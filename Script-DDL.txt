@@ -30,3 +30,5 @@ CREATE TABLE public.meio_transporte (
 );
 
 ALTER TABLE public.meio_transporte ADD CONSTRAINT fknqt1iec958qgbtsok5uxfp6s1 FOREIGN KEY (id_motorista) REFERENCES public.motorista(id);
+
+INSERT INTO usuario (nome_completo, login, senha, perfil) VALUES ('Ademiro da Silva', 'admin', 'admin', 1)
